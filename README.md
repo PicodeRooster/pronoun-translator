@@ -1,13 +1,13 @@
 # Purpose
 Input text string with gendered pronouns and output same text replacing with the non-gendered pronouns "they/them" with proper grammar. 
 
-|Function|He set|She set|Replace with|
-|---|---|---|---|
-|Subject|he|she|they|
-|Object|him|her|them|
-|Possessive adjective|his|her|their|
-|Possessive noun|his|hers|theirs|
-|Reflexive|himself|herself|themselves|
+| Function             | He set  | She set | Replace with |
+| -------------------- | ------- | ------- | ------------ |
+| Subject              | he      | she     | they         |
+| Object               | him     | her     | them         |
+| Possessive adjective | his     | her     | their        |
+| Possessive noun      | his     | hers    | theirs       |
+| Reflexive            | himself | herself | themselves   |
 ## Challenges
 
 **1. "His" — adjective or noun?**
