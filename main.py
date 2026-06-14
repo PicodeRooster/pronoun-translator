@@ -1,13 +1,8 @@
 import spacy
 
 nlp = spacy.load("en_core_web_sm")
-
-text = ("When Sebastian Thrun started working on self-driving cars at "
-        "Google in 2007, few people outside of the company took him "
-        "seriously. “I can tell you very senior CEOs of major American "
-        "car companies would shake my hand and turn away because I wasn’t "
-        "worth talking to,” said Thrun, in an interview with Recode earlier "
-        "this week.")
+#text = "Sarah grabbed her coat and called out to him before he could leave. The dog was hers, after all, and she wasn't about to let himself — or rather, David — walk out with it. She tucked his leash into her bag and told herself that his stubbornness wasn't worth fighting today."
+text = "them"
 doc = nlp(text)
 
 print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
