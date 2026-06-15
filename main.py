@@ -1,7 +1,26 @@
+import sys
 import spacy
 
 nlp = spacy.load("en_core_web_sm")
-text = "Sarah grabbed her coat and called out to him before he could leave. The dog was hers, after all, and she wasn't about to let himself — or rather, David — walk out with it. She tucked his leash into her bag and told herself that his stubbornness wasn't worth fighting today."
+
+def user_input():
+    print("Enter text. Type 'END' on a new line to finish:")
+    lines = []
+
+    while True:
+        line = input()
+        if line.strip() == "END":
+            break
+        lines.append(line)
+
+    text_input = "\n".join(lines)
+    return text_input
+
+try: 
+    sys.argv[1]
+    text = sys.argv[1]
+except IndexError:
+    text = user_input()
 
 PRONOUNS = {
     "he": "they",   "she": "they",
