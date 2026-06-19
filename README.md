@@ -1,5 +1,5 @@
 # Purpose
-Input text string with gendered pronouns and output same text replacing with the non-gendered pronouns "they/them" with proper grammar. 
+Input text string with gendered pronouns and output same text replacing with the non-gendered pronouns "they/them". 
 
 | Function             | He set  | She set | Replace with |
 | -------------------- | ------- | ------- | ------------ |
@@ -8,6 +8,7 @@ Input text string with gendered pronouns and output same text replacing with the
 | Possessive adjective | his     | her     | their        |
 | Possessive noun      | his     | hers    | theirs       |
 | Reflexive            | himself | herself | themselves   |
+
 ## Challenges
 
 **1. "His" — adjective or noun?**
@@ -26,6 +27,31 @@ The rule: _her_ followed by a noun = possessive adjective. _Her_ following a ver
 
 **3. Capitalization**  
 _He/She/His/Her_ at the start of a sentence are still pronouns — don't let the capital fool your parser into missing them. The replacement needs to preserve sentence-initial capitalization: _He left_ → _They left_, not _they left_.
+
+**4. Proper Grammar**
+Take this excerpt from Pride and Prejudice:
+
+"""
+However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered as the rightful property of some one or other of their daughters.
+"""
+
+The phrase "that he is considered as the rightful property" when modified to use gender neutral pronouns, is grammatically correct when written like so: "that they are considered as the rightful property."
+
+In its current form, there is no rule to take linking verbs into consideration. The output would be gramatically incorrect: "that they is considered as the rightful property."
+
+What I discovered is that creating the rules for verb agreement is difficult even for experienced programmers. While certainly possible, it is beyond the scope of this project. In its current form, the grammar of the output needs to be verified. 
+
+Here are the troubling grammar rules:
+
+| Original           | Neutral output needed |
+|--------------------|-----------------------|
+| "he **is**"        | "they **are**"        |
+| "he **was**"       | "they **were**"       |
+| "she **has been**" | "they **have been**"  |
+| "he **isn't**"     | "they **aren't**"     |
+| "wasn't he"        | "weren't they"        |
+
+So this is a problem of the English language. I had to concede on this step to avoid delaying this project's deadline by months.
 
 ## Approaches
 
@@ -98,4 +124,30 @@ FUNCTION replace_pronouns(text):
         APPEND replacement to result
 
     RETURN result joined as a string with spaces
+```
+
+---
+
+### Code Explanation
+```
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
+```
+The spaCy module is a natural language processor that uses multiple processing pipelines.  The default option for english is `en_core_web_sm`
+
+After tokenization, spaCy can parse and tag a given Doc. This is where the trained pipeline and its statistical models come in, which enable spaCy to make predictions of which tag or label most likely applies in this context. A trained component includes binary data that is produced by showing a system enough examples for it to make predictions that generalize across the language – for example, a word following “the” in English is most likely a noun.
+
+Linguistic annotations are available as Token attributes. Like many NLP libraries, spaCy encodes all strings to hash values to reduce memory usage and improve efficiency. So to get the readable string representation of an attribute, we need to add an underscore _ to its name:
+
+---
+
+
+```
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
+doc = nlp("Apple is looking at buying U.K. startup for $1 billion")
+for token in doc:
+    print(token.text)
 ```
