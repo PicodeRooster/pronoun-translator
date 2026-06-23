@@ -1,10 +1,10 @@
 # Pronoun Translator
 
-In the modern age, non-binary gender identity has returned to popularity. I say returned as there is historic evidence of gender non-conforming individuals across multiple cultures. The idea of gender neutrality is not new, but it is re-emerging in society. This is a subject I am well-versed in as a gender non-conforming person myself. I personally believe asking someone gender should be a sign of respect, not controversy. However, I recognize that asking someone's pronouns is still (unfortunately) a politically sensitive topic. To avoid friction on either side of the spectrum, I stick to addressing everyone with gender neutral pronouns until I am certain of the person's preference.
+In the modern age, non-binary gender identity has returned to popularity. I say returned as there is historic evidence of gender non-conforming individuals across multiple cultures. The idea of gender neutrality is not new, but it is re-emerging in society. This is a subject I am well-versed in as a gender non-conforming person myself. I personally believe asking someone's gender should be a sign of respect, not controversy. However, I recognize that asking someone's pronouns is still (unfortunately) a politically sensitive topic. To avoid friction on either side of the spectrum, I stick to addressing everyone with gender neutral pronouns until I am certain of the person's preference.
 
-With that being said, English is a gendered language. All English speakers are accostumed to using "he/she" when addressing a person. The brain auto-defaults to one schema - female schemas get filed with "she/her" and males under "he/him." The brain is used to saying or writing "he" and "she" as it has been trained for decades. And the older you are, the harder it is to break out of this habit. This challenge was what inspired me to create this tool. 
+With that being said, English is a gendered language. All English speakers are accustomed to using "he/she" when addressing a person. The brain auto-defaults to one schema - female schemas get filed with "she/her" and males under "he/him." The brain is used to saying or writing "he" and "she" as it has been trained for decades. And the older you are, the harder it is to break out of this habit. This challenge was what inspired me to create this tool. 
 
-Since I want to address all my clients with gender neutral pronouns if I do not confirm their preference, it can be difficult to switch back-and-forth between gendered and neutral pronouns, depending on who I am writing about. This tool is meant to solve that problem. You input any paragraph with gendered pronouns and it will convert those to neutral while doing nothing to the neutral pronouns it finds accross the string.
+Since I want to address all my clients with gender neutral pronouns if I do not confirm their preference, it can be difficult to switch back-and-forth between gendered and neutral pronouns, depending on who I am writing about. This tool is meant to solve that problem. You input any paragraph with gendered pronouns and it will convert those to neutral while doing nothing to the neutral pronouns it finds across the string.
 
 ## Purpose
 
@@ -28,7 +28,7 @@ However little known the feelings or views of such a man may be on his first ent
 
 The phrase "that he is considered as the rightful property" when modified to use gender neutral pronouns, is grammatically correct when written like so: "that they are considered as the rightful property."
 
-In its current form, there is no rule to take linking verbs into consideration. The output would be gramatically incorrect: "that they is considered as the rightful property."
+In its current form, there is no rule to take linking verbs into consideration. The output would be grammatically incorrect: "that they is considered as the rightful property."
 
 What I discovered is that creating the rules for verb agreement is difficult even for experienced programmers. While certainly possible, it is beyond the scope of this project. In its current form, the grammar of the output needs to be verified. 
 
@@ -72,10 +72,10 @@ _He/She/His/Her_ at the start of a sentence are still pronouns — don't let the
 Use a **part-of-speech tagger.** For this project, the spaCy library made the most sense. The workflow looks like so:
 
  - Input text with gendered pronouns.
- - Module spaCy runs through the whole text and find tokens that are pronouns.
+ - Module spaCy runs through the whole text and finds tokens that are pronouns.
  - Loop through whole text.
  - If word is not a pronoun, append to final output and continue...
- - If non-gendered pronoun is found, to final output and continue...
+ - If non-gendered pronoun is found, append it to final output and continue...
  - If gendered pronoun is found:
 	 - look up its function
 	 - replace with correct variable from substitution map
@@ -148,7 +148,7 @@ import spacy
 
 nlp = spacy.load("en_core_web_sm")
 ```
-The spaCy module is a natural language processor that uses multiple processing pipelines.  The default option for english is `en_core_web_sm`
+The spaCy module is a natural language processor that uses multiple processing pipelines.  The default option for English is `en_core_web_sm`
 
 After tokenization, spaCy can parse and tag a given Doc. This is where the trained pipeline and its statistical models come in, which enable spaCy to make predictions of which tag or label most likely applies in this context. A trained component includes binary data that is produced by showing a system enough examples for it to make predictions that generalize across the language – for example, a word following “the” in English is most likely a noun.
 
