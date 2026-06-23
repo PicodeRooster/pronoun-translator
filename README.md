@@ -1,4 +1,13 @@
-# Purpose
+# Pronoun Translator
+
+In the modern age, non-binary gender identity has returned to popularity. I say returned as there is historic evidence of gender non-conforming individuals across multiple cultures. The idea of gender neutrality is not new, but it is re-emerging in society. This is a subject I am well-versed in as a gender non-conforming person myself. I personally believe asking someone gender should be a sign of respect, not controversy. However, I recognize that asking someone's pronouns is still (unfortunately) a politically sensitive topic. To avoid friction on either side of the spectrum, I stick to addressing everyone with gender neutral pronouns until I am certain of the person's preference.
+
+With that being said, English is a gendered language. All English speakers are accostumed to using "he/she" when addressing a person. The brain auto-defaults to one schema - female schemas get filed with "she/her" and males under "he/him." The brain is used to saying or writing "he" and "she" as it has been trained for decades. And the older you are, the harder it is to break out of this habit. This challenge was what inspired me to create this tool. 
+
+Since I want to address all my clients with gender neutral pronouns if I do not confirm their preference, it can be difficult to switch back-and-forth between gendered and neutral pronouns, depending on who I am writing about. This tool is meant to solve that problem. You input any paragraph with gendered pronouns and it will convert those to neutral while doing nothing to the neutral pronouns it finds accross the string.
+
+## Purpose
+
 Input text string with gendered pronouns and output same text replacing with the non-gendered pronouns "they/them". 
 
 | Function             | He set  | She set | Replace with |
@@ -11,25 +20,7 @@ Input text string with gendered pronouns and output same text replacing with the
 
 ## Challenges
 
-**1. "His" — adjective or noun?**
-
-- _That's his dog_ → possessive adjective → _their dog_
-- _That dog is his_ → possessive noun → _that dog is theirs_
-
-The rule: if _his_ is followed by a noun (or noun phrase), it's an adjective. If it's at the end of a clause or followed by a verb/punctuation, it's a standalone noun.
-
-**2. "Her" — object or adjective?**
-
-- _I called her_ → object → _I called them_
-- _Her dog ran away_ → possessive adjective → _Their dog ran away_
-
-The rule: _her_ followed by a noun = possessive adjective. _Her_ following a verb (with no noun after it in the same phrase) = object pronoun.
-
-**3. Capitalization**  
-_He/She/His/Her_ at the start of a sentence are still pronouns — don't let the capital fool your parser into missing them. The replacement needs to preserve sentence-initial capitalization: _He left_ → _They left_, not _they left_.
-
-**4. Proper Grammar**
-Take this excerpt from Pride and Prejudice:
+The real challenge of this project is not coding: it's working with the English language. Take this excerpt from Pride and Prejudice:
 
 """
 However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered as the rightful property of some one or other of their daughters.
@@ -51,7 +42,30 @@ Here are the troubling grammar rules:
 | "he **isn't**"     | "they **aren't**"     |
 | "wasn't he"        | "weren't they"        |
 
+
 So this is a problem of the English language. I had to concede on this step to avoid delaying this project's deadline by months.
+
+---
+
+As for the English language challenges, there are a few situations we can adjust to map out proper grammar for around 80% of cases, without relying on advanced programming knowledge.
+
+**1. "His" — adjective or noun?**
+
+- _That's his dog_ → possessive adjective → _their dog_
+- _That dog is his_ → possessive noun → _that dog is theirs_
+
+The rule: if _his_ is followed by a noun (or noun phrase), it's an adjective. If it's at the end of a clause or followed by a verb/punctuation, it's a standalone noun.
+
+**2. "Her" — object or adjective?**
+
+- _I called her_ → object → _I called them_
+- _Her dog ran away_ → possessive adjective → _Their dog ran away_
+
+The rule: _her_ followed by a noun = possessive adjective. _Her_ following a verb (with no noun after it in the same phrase) = object pronoun.
+
+**3. Capitalization**  
+_He/She/His/Her_ at the start of a sentence are still pronouns — don't let the capital fool your parser into missing them. The replacement needs to preserve sentence-initial capitalization: _He left_ → _They left_, not _they left_.
+
 
 ## Approaches
 
